@@ -1,0 +1,38 @@
+<list>
+  <aluno>
+    <id>1697477180403</id>
+    <nome>Diogo Marcelo</nome>
+    <dataNascimento>1998-07-17</dataNascimento>
+    <email>diogo@gmail.com</email>
+    <telefone>83996586204</telefone>
+    <matricula>20231016</matricula>
+    <turno>NOITE</turno>
+    <nivel>BASICO</nivel>
+    <dataMatricula>2023-10-16</dataMatricula>
+    <mensalidade>
+      <valor>154.5</valor>
+      <dataVencimento>2023-11-16</dataVencimento>
+      <pago>true</pago>
+      <formaPagamentoStrategy class="br.edu.ifpb.ads.pagamento.CartaoPagamento"/>
+    </mensalidade>
+    <ativo>true</ativo>
+  </aluno>
+  <aluno>
+    <id>1697477433804</id>
+    <nome>Joao</nome>
+    <dataNascimento>2000-05-10</dataNascimento>
+    <email>joao@email.com</email>
+    <telefone>123456789</telefone>
+    <matricula>MAT123</matricula>
+    <turno>MANHA</turno>
+    <nivel>BASICO</nivel>
+    <dataMatricula>2023-01-15</dataMatricula>
+    <mensalidade>
+      <valor>1100.0</valor>
+      <dataVencimento>2023-02-01</dataVencimento>
+      <pago>true</pago>
+      <formaPagamentoStrategy class="br.edu.ifpb.ads.pagamento.DinheiroPagamento"/>
+    </mensalidade>
+    <ativo>true</ativo>
+  </aluno>
+</list>
