@@ -2,7 +2,14 @@ package br.edu.ifpb.ads.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+
+@Entity
+@DiscriminatorValue("ADMIN")
 public class Administrador extends Pessoa {
+
 
     private String email;
     private String senha;

@@ -3,9 +3,7 @@ package br.edu.ifpb.ads.views.aluno;
 import java.awt.Font;
 import java.text.ParseException;
 
-import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;

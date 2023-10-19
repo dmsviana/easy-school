@@ -2,9 +2,26 @@ package br.edu.ifpb.ads.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name = "TB_PESSOA")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TIPO_PESSOA", discriminatorType = DiscriminatorType.STRING)
 public abstract class Pessoa {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private LocalDate dataNascimento;

@@ -4,22 +4,26 @@ import java.time.LocalDate;
 
 import br.edu.ifpb.ads.model.enums.Nivel;
 import br.edu.ifpb.ads.model.enums.Turno;
-import br.edu.ifpb.ads.pagamento.FormaPagamentoStrategy;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("ALUNO")
 public class Aluno extends Pessoa {
+
     private String email;
     private String telefone;
     private String matricula;
     private Turno turno;
     private Nivel nivel;
     private LocalDate dataMatricula;
-    private Mensalidade mensalidade;
     private boolean ativo;
 
     public Aluno() {
     }
 
-    public Aluno(String nome, LocalDate dataNascimento, String email, String telefone, String matricula, Turno turno, Nivel nivel, LocalDate dataMatricula, double valorMensalidade, LocalDate dataVencimento, FormaPagamentoStrategy formaPagamentoStrategy) {
+    public Aluno(String nome, LocalDate dataNascimento, String email, String telefone, String matricula, Turno turno,
+            Nivel nivel, LocalDate dataMatricula, double valorMensalidade, LocalDate dataVencimento) {
         super(nome, dataNascimento);
         this.email = email;
         this.telefone = telefone;
@@ -28,11 +32,6 @@ public class Aluno extends Pessoa {
         this.nivel = nivel;
         this.dataMatricula = dataMatricula;
         this.ativo = true;
-        this.mensalidade = new Mensalidade(valorMensalidade, dataVencimento, formaPagamentoStrategy);
-    }
-
-    public void realizarPagamento() {
-        mensalidade.calcularPagamento();
     }
 
     public void setAtivo(boolean ativo) {
@@ -91,25 +90,11 @@ public class Aluno extends Pessoa {
         this.dataMatricula = dataMatricula;
     }
 
-    public Mensalidade getMensalidade() {
-        return mensalidade;
-    }
-
-    public void setMensalidade(Mensalidade mensalidade) {
-        this.mensalidade = mensalidade;
-    }
-
     @Override
     public String toString() {
         return "Aluno [email=" + email + ", telefone=" + telefone + ", matricula=" + matricula + ", turno=" + turno
-                + ", nivel=" + nivel + ", dataMatricula=" + dataMatricula + ", mensalidade=" + mensalidade + ", ativo="
+                + ", nivel=" + nivel + ", dataMatricula=" + dataMatricula + ", ativo="
                 + ativo + "]";
     }
 
-
-    
-
-    
-
 }
-

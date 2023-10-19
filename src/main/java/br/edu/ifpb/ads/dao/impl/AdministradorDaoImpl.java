@@ -1,98 +1,62 @@
 package br.edu.ifpb.ads.dao.impl;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-import com.thoughtworks.xstream.security.AnyTypePermission;
-import com.thoughtworks.xstream.security.TypePermission;
-import com.thoughtworks.xstream.security.WildcardTypePermission;
-
-import br.edu.ifpb.ads.dao.AdministradorDAO;
-import br.edu.ifpb.ads.dto.AdministradorDTO;
+import br.edu.ifpb.ads.dao.DAO;
+import br.edu.ifpb.ads.dao.IAdministradorDAO;
 import br.edu.ifpb.ads.model.Administrador;
+import jakarta.persistence.EntityManager;
 
-public class AdministradorDaoImpl implements AdministradorDAO {
+public class AdministradorDaoImpl extends DAO implements IAdministradorDAO {
 
-    private static final String XML_FILE_PATH = "admin.xml";
-    private XStream xstream;
-    private String emailSalvo;
-    private boolean statusCheckBox = false;
 
-    public AdministradorDaoImpl() {
-        xstream = new XStream(new DomDriver());
+    private static AdministradorDaoImpl adminSingleton;
 
-        TypePermission allowAll = new AnyTypePermission();
-        TypePermission allowAdministrador = new WildcardTypePermission(new String[] { "model.Administrador" });
-        xstream.addPermission(allowAll);
-        xstream.addPermission(allowAdministrador);
+    private AdministradorDaoImpl(){
 
-        xstream.alias("administador", Administrador.class);
     }
 
-
-    private Administrador recuperarDados(){
-        try {
-            FileInputStream fileInputStream = new FileInputStream(XML_FILE_PATH);
-            return (Administrador) xstream.fromXML(fileInputStream);
-        } catch (IOException ex){
-            return new Administrador();
+    public static synchronized AdministradorDaoImpl getInstance(){
+        if(adminSingleton == null){
+            adminSingleton = new AdministradorDaoImpl();
         }
+        return adminSingleton;
     }
 
-    private void salvarDados(Administrador administrador){
+    @Override
+    public void salvarAdmin(Administrador admin) throws Exception {
+
+        EntityManager manager = getEntityManager();
+
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(XML_FILE_PATH);
-            xstream.toXML(administrador, fileOutputStream);
-        } catch (IOException ex){
+            manager.getTransaction().begin();
+            manager.persist(admin);
+            manager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
+            manager.getTransaction().rollback();
+            throw new Exception("Erro ao salvar administrador");
+        } finally {
+            manager.close();
         }
     }
 
     @Override
-    public void salvarAdmin(AdministradorDTO admin) {
-        Administrador administrador = new Administrador();
-        administrador.setNome(admin.getNome());
-        administrador.setEmail(admin.getEmail());
-        administrador.setSenha(admin.getSenha());
-        administrador.setDataNascimento(admin.getDataNascimento());
+    public Administrador autenticarAdministrador(String email, String senha) throws Exception {
 
-        salvarDados(administrador);
+        EntityManager manager = getEntityManager();
 
-    }
-    
-    @Override
-    public Administrador autenticarAdmin(String email, String senha) {
-        Administrador administrador = recuperarDados();
-        if (administrador.getEmail().equals(email) && administrador.getSenha().equals(senha)) {
-            return administrador;
+        try {
+            Administrador admin = manager.createQuery("SELECT a FROM Administrador a WHERE a.email = :email AND a.senha = :senha", Administrador.class)
+                    .setParameter("email", email)
+                    .setParameter("senha", senha)
+                    .getSingleResult();
+            return admin;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new Exception("Erro ao autenticar administrador");
+        } finally {
+            manager.close();
         }
-        return null;
+        
     }
-
-
-    public String getEmailSalvo() {
-        return emailSalvo;
-    }
-
-
-    public void setEmailSalvo(String emailSalvo) {
-        this.emailSalvo = emailSalvo;
-    }
-
-
-    public boolean isStatusCheckBox() {
-        return statusCheckBox;
-    }
-
-
-    public void setStatusCheckBox(boolean statusCheckBox) {
-        this.statusCheckBox = statusCheckBox;
-    }
-
     
-
-
 }

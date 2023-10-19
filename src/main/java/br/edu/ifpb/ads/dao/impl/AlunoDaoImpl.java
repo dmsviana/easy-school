@@ -1,96 +1,96 @@
 package br.edu.ifpb.ads.dao.impl;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-import com.thoughtworks.xstream.security.AnyTypePermission;
-import com.thoughtworks.xstream.security.TypePermission;
-import com.thoughtworks.xstream.security.WildcardTypePermission;
-
-import br.edu.ifpb.ads.dao.AlunoDAO;
+import br.edu.ifpb.ads.dao.DAO;
+import br.edu.ifpb.ads.dao.IAlunoDAO;
 import br.edu.ifpb.ads.model.Aluno;
+import jakarta.persistence.EntityManager;
 
-public class AlunoDaoImpl implements AlunoDAO {
+public class AlunoDaoImpl extends DAO implements IAlunoDAO {
 
-    private static final String ARQUIVO_XML = "alunos.xml";
-    private XStream xstream;
+    @Override
+    public List<Aluno> listarAlunos() throws Exception {
+        EntityManager manager = getEntityManager();
 
-    public AlunoDaoImpl() {
-        xstream = new XStream(new DomDriver());
-        xstream.alias("aluno", Aluno.class);
-
-         TypePermission allowAll = new AnyTypePermission();
-        TypePermission allowAluno = new WildcardTypePermission(new String[]{"model.Aluno"});
-        xstream.addPermission(allowAll);
-        xstream.addPermission(allowAluno);
-    }
-    
-    @SuppressWarnings("unchecked")
-    public List<Aluno> listarAlunos(){
         try {
-            FileInputStream fileInputStream = new FileInputStream(ARQUIVO_XML);
-            return (List<Aluno>) xstream.fromXML(fileInputStream);
-        } catch (IOException e) {
-            return new ArrayList<>();
+            List<Aluno> alunos = manager.createQuery("SELECT a FROM Aluno a", Aluno.class).getResultList();
+            return alunos;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new Exception("Erro ao listar alunos");
+        } finally {
+            manager.close();
         }
+            
+
     }
 
     @Override
-    public Aluno buscarAluno(String matricula) {
-        List<Aluno> alunos = listarAlunos();
-        for (Aluno aluno : alunos){
-            if(aluno.getMatricula().equalsIgnoreCase(matricula)){
-                return aluno;
-            }
-        }
-        return null;
-    }
+    public Aluno buscarAluno(String matricula) throws Exception {
+        EntityManager manager = getEntityManager();
 
-
-    @Override
-    public void adicionarAluno(Aluno aluno) {
-        List<Aluno> alunos = listarAlunos();
-        alunos.add(aluno);
-        salvarAlunos(alunos);
-    }
-
-
-    @Override
-    public void atualizarAluno(Aluno aluno) {
-        List<Aluno> alunos = listarAlunos();
-        for (int i = 0; i < alunos.size(); i++) {
-            if (alunos.get(i).getMatricula() == aluno.getMatricula()) {
-                alunos.set(i, aluno);
-                break;
-            }
-        }
-        salvarAlunos(alunos);
-    }
-
-
-
-    @Override
-    public void removerAluno(String matricula) {
-        List<Aluno> alunos = listarAlunos();
-        alunos.removeIf(aluno -> aluno.getMatricula().equalsIgnoreCase(matricula));
-        salvarAlunos(alunos);
-    }
-
-
-    private void salvarAlunos(List<Aluno> alunos){
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(ARQUIVO_XML);
-            xstream.toXML(alunos, fileOutputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
+            Aluno aluno = manager.find(Aluno.class, matricula);
+            return aluno;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new Exception("Erro ao buscar aluno");
+        } finally {
+            manager.close();
         }
     }
 
-   
+    @Override
+    public void salvarAluno(Aluno aluno) throws Exception {
+        EntityManager manager = getEntityManager();
+
+        try {
+            manager.getTransaction().begin();
+            manager.persist(aluno);
+            manager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            manager.getTransaction().rollback();
+            throw new Exception("Erro ao salvar aluno");
+        } finally {
+            manager.close();
+        }
+    }
+
+    @Override
+    public void atualizarAluno(Aluno aluno) throws Exception {
+        EntityManager manager = getEntityManager();
+
+        try {
+            manager.getTransaction().begin();
+            manager.merge(aluno);
+            manager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            manager.getTransaction().rollback();
+            throw new Exception("Erro ao atualizar aluno");
+        } finally {
+            manager.close();
+        }
+    }
+
+    @Override
+    public void removerAluno(String matricula) throws Exception {
+        EntityManager manager = getEntityManager();
+
+        try {
+            manager.getTransaction().begin();
+            Aluno aluno = manager.find(Aluno.class, matricula);
+            manager.remove(aluno);
+            manager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            manager.getTransaction().rollback();
+            throw new Exception("Erro ao remover aluno");
+        } finally {
+            manager.close();
+        }
+    }
+
 }

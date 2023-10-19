@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import com.formdev.flatlaf.FlatClientProperties;
 
 import br.edu.ifpb.ads.controller.AdminController;
-import br.edu.ifpb.ads.dto.AdministradorDTO;
 import br.edu.ifpb.ads.model.Administrador;
 import br.edu.ifpb.ads.utils.Imagens;
 import br.edu.ifpb.ads.views.components.JButtonPadrao;
@@ -34,7 +33,7 @@ public class LoginGUI extends JanelaPadrao {
 
     public LoginGUI() {
         super("Easy School - Login");
-        adminController = AdminController.getInstance();
+        adminController = new AdminController();
         adicionarImagens();
         adicionarLabels();
         adicionarTextFields();
@@ -103,15 +102,13 @@ public class LoginGUI extends JanelaPadrao {
             String email = txtEmail.getText();
             String senha = new String(txtSenha.getPassword());
 
-            AdministradorDTO administradorDTO = new AdministradorDTO(email, senha);
-
-            Administrador admin = adminController.autenticarAdmin(administradorDTO);
+            Administrador admin = adminController.autenticarAdministrador(email, senha);
 
             if (admin != null) {
                 dispose();
                 new InicioGUI().setVisible(true);
 
-                if(chLembrarSenha.isSelected()){
+                if (chLembrarSenha.isSelected()) {
                     salvarCredenciais(email, senha);
                 }
             } else {
@@ -130,29 +127,27 @@ public class LoginGUI extends JanelaPadrao {
             properties.store(fileOut, "Credenciais de login");
         } catch (IOException e) {
             e.printStackTrace();
-            // Lide com erros de maneira apropriada, como exibindo uma mensagem de erro ao usuário
         }
     }
-
 
     private void carregarCredenciaisSalvas() {
-    Properties properties = new Properties();
+        Properties properties = new Properties();
 
-    try (FileInputStream fileIn = new FileInputStream("credenciais.properties")) {
-        properties.load(fileIn);
-        String email = properties.getProperty("email");
-        String senha = properties.getProperty("senha");
+        try (FileInputStream fileIn = new FileInputStream("credenciais.properties")) {
+            properties.load(fileIn);
+            String email = properties.getProperty("email");
+            String senha = properties.getProperty("senha");
 
-        if (email != null && senha != null) {
-            txtEmail.setText(email);
-            txtSenha.setText(senha);
-            chLembrarSenha.setSelected(true);
+            if (email != null && senha != null) {
+                txtEmail.setText(email);
+                txtSenha.setText(senha);
+                chLembrarSenha.setSelected(true);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
-    } catch (IOException e) {
-        e.printStackTrace();
-        // Lide com erros de maneira apropriada, como exibindo uma mensagem de erro ao usuário
     }
-}
 
     public JTextFieldPadrao getTxtEmail() {
         return txtEmail;
