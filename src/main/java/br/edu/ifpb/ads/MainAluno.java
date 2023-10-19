@@ -11,6 +11,7 @@ import br.edu.ifpb.ads.pagamento.CartaoPagamento;
 import br.edu.ifpb.ads.pagamento.DinheiroPagamento;
 import br.edu.ifpb.ads.pagamento.FormaPagamentoStrategy;
 import br.edu.ifpb.ads.pagamento.PixPagamento;
+import br.edu.ifpb.ads.pagamento.TipoPagamento;
 
 public class MainAluno {
 
@@ -51,21 +52,7 @@ public class MainAluno {
         System.out.print("Escolha a forma de pagamento (DINHEIRO, CARTAO, ou PIX): ");
         FormaPagamentoStrategy formaPagamentoStrategy;
 
-        String formaPagamento = scanner.nextLine().toUpperCase();
-        switch (formaPagamento) {
-            case "DINHEIRO":
-                formaPagamentoStrategy = new DinheiroPagamento();
-                break;
-            case "CARTAO":
-                formaPagamentoStrategy = new CartaoPagamento();
-                break;
-            case "PIX":
-                formaPagamentoStrategy = new PixPagamento();
-                break;
-            default:
-                System.out.println("Forma de pagamento inválida. Usando PIX como padrão.");
-                formaPagamentoStrategy = new PixPagamento();
-        }
+        formaPagamentoStrategy = TipoPagamento.valueOf(scanner.nextLine().toUpperCase()).obterFormaPagamento();
 
         Aluno aluno = new Aluno(nome, dataNascimento, email, telefone, matricula, turno, nivel, dataMatricula, valorMensalidade, dataVencimento, formaPagamentoStrategy);
 
