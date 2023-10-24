@@ -16,4 +16,25 @@
     </mensalidade>
     <ativo>true</ativo>
   </aluno>
+
+  <aluno>
+    <id>1698163336246</id>
+    <nome>Dener Matheus</nome>
+    <dataNascimento>1994-06-13</dataNascimento>
+    <email>dener.matheus@gmail.com</email>
+    <telefone>83996585421</telefone>
+    <matricula>20231021</matricula>
+    <turno>NOITE</turno>
+    <nivel>AVANCADO</nivel>
+    <dataMatricula>2023-10-24</dataMatricula>
+    <mensalidade>
+      <valor>200.0</valor>
+      <dataVencimento>2023-11-24</dataVencimento>
+      <pago>false</pago>
+    </mensalidade>
+    <ativo>false</ativo>
+  </aluno>
+
+
+
 </list>

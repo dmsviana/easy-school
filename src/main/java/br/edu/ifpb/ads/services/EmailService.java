@@ -2,7 +2,6 @@ package br.edu.ifpb.ads.services;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailAttachment;
-import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.MultiPartEmail;
 
 import br.edu.ifpb.ads.model.Aluno;
