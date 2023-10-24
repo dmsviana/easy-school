@@ -35,7 +35,7 @@ public class AlunoDaoImpl implements AlunoDAO {
     public List<Aluno> listarAlunos(){
         try {
             FileInputStream fileInputStream = new FileInputStream(ARQUIVO_XML);
-            return (List<Aluno>) xstream.fromXML(fileInputStream);
+            return (ArrayList<Aluno>) xstream.fromXML(fileInputStream);
         } catch (IOException e) {
             return new ArrayList<>();
         }

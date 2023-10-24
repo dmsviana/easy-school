@@ -1,40 +1,20 @@
 <list>
   <aluno>
-    <id>1698163325135</id>
+    <id>1698168923317</id>
     <nome>Diogo Marcelo</nome>
     <dataNascimento>1998-07-17</dataNascimento>
     <email>dmsvianadev@gmail.com</email>
-    <telefone>8399999999</telefone>
+    <telefone>(83)996586204</telefone>
     <matricula>20231024</matricula>
     <turno>NOITE</turno>
     <nivel>AVANCADO</nivel>
     <dataMatricula>2023-10-24</dataMatricula>
     <mensalidade>
-      <valor>200.0</valor>
+      <valor>118.75</valor>
       <dataVencimento>2023-11-24</dataVencimento>
-      <pago>false</pago>
+      <pago>true</pago>
+      <formaPagamentoStrategy class="br.edu.ifpb.ads.payments.DinheiroPagamento"/>
     </mensalidade>
     <ativo>true</ativo>
   </aluno>
-
-  <aluno>
-    <id>1698163336246</id>
-    <nome>Dener Matheus</nome>
-    <dataNascimento>1994-06-13</dataNascimento>
-    <email>dener.matheus@gmail.com</email>
-    <telefone>83996585421</telefone>
-    <matricula>20231021</matricula>
-    <turno>NOITE</turno>
-    <nivel>AVANCADO</nivel>
-    <dataMatricula>2023-10-24</dataMatricula>
-    <mensalidade>
-      <valor>200.0</valor>
-      <dataVencimento>2023-11-24</dataVencimento>
-      <pago>false</pago>
-    </mensalidade>
-    <ativo>false</ativo>
-  </aluno>
-
-
-
 </list>

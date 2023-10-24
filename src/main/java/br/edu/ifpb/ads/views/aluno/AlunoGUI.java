@@ -38,6 +38,7 @@ public class AlunoGUI extends JanelaPadrao {
     public AlunoGUI() {
         super("Easy School - Alunos");
         alunoController = new AlunoController();
+        setSize(1200, 700);
         adicionarCheckBox();
         adicionarImagens();
         adicionarButtons();
@@ -81,7 +82,7 @@ public class AlunoGUI extends JanelaPadrao {
         tabelaAlunos.setAutoscrolls(true);
         
         painelTabela = new JScrollPane(tabelaAlunos);
-        painelTabela.setBounds(375, 100, 600, 300);
+        painelTabela.setBounds(375, 100, 800, 500);
         add(painelTabela);
         repaint();
 
@@ -89,14 +90,14 @@ public class AlunoGUI extends JanelaPadrao {
 
     private void adicionarCheckBox(){
         filtroAlunosAtivos = new JCheckBox("Alunos Ativos");
-        filtroAlunosAtivos.setBounds(375, 410, 120, 25);
+        filtroAlunosAtivos.setBounds(375, 610, 120, 25);
         filtroAlunosAtivos.addActionListener(new OuvinteFiltroCheckBox());
         add(filtroAlunosAtivos);
     }
 
     private void adicionarImagens() {
         JLabel lblAlunoFlat = new JLabel(Imagens.ALUNO_FLAT);
-        lblAlunoFlat.setBounds(0, 35, 368, 387);
+        lblAlunoFlat.setBounds(0, 85, 368, 387);
         add(lblAlunoFlat);
     }
 
@@ -120,15 +121,15 @@ public class AlunoGUI extends JanelaPadrao {
         });
         add(btnVoltar);
 
-        JButton btnAdicionarAluno = new JButtonPadrao("Novo", 655, 60, 100, 25);
+        JButton btnAdicionarAluno = new JButtonPadrao("Novo", 855, 60, 100, 25);
         btnAdicionarAluno.setIcon(Imagens.ADICIONAR);
         add(btnAdicionarAluno);
 
-        JButton btnAtualizarAluno = new JButtonPadrao("Atualizar", 765, 60, 100, 25);
+        JButton btnAtualizarAluno = new JButtonPadrao("Atualizar", 965, 60, 100, 25);
         btnAtualizarAluno.setIcon(Imagens.EDITAR);
         add(btnAtualizarAluno);
 
-        JButton btnRemoverAluno = new JButtonPadrao("Remover", 875, 60, 100, 25);
+        JButton btnRemoverAluno = new JButtonPadrao("Remover", 1075, 60, 100, 25);
         btnRemoverAluno.setIcon(Imagens.DELETAR);
         add(btnRemoverAluno);
 
@@ -160,7 +161,7 @@ public class AlunoGUI extends JanelaPadrao {
                 tabelaAlunos = new JTable(modeloTabela);
                 tabelaAlunos.setAutoscrolls(true);
                 painelTabela = new JScrollPane(tabelaAlunos);
-                painelTabela.setBounds(375, 100, 600, 300);
+                painelTabela.setBounds(375, 100, 800, 500);
                 add(painelTabela);
                 repaint();
 
