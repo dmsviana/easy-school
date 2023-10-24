@@ -1,73 +1,18 @@
 <list>
   <aluno>
-    <id>1697477180403</id>
+    <id>1698163325135</id>
     <nome>Diogo Marcelo</nome>
     <dataNascimento>1998-07-17</dataNascimento>
-    <email>marcello.razer@gmail.com</email>
-    <telefone>83996586204</telefone>
-    <matricula>20231016</matricula>
+    <email>dmsvianadev@gmail.com</email>
+    <telefone>8399999999</telefone>
+    <matricula>20231024</matricula>
     <turno>NOITE</turno>
-    <nivel>BASICO</nivel>
-    <dataMatricula>2023-10-16</dataMatricula>
+    <nivel>AVANCADO</nivel>
+    <dataMatricula>2023-10-24</dataMatricula>
     <mensalidade>
-      <valor>154.5</valor>
-      <dataVencimento>2023-11-16</dataVencimento>
-      <pago>true</pago>
-      <formaPagamentoStrategy class="br.edu.ifpb.ads.pagamento.CartaoPagamento"/>
-    </mensalidade>
-    <ativo>true</ativo>
-  </aluno>
-  <aluno>
-    <id>1697477433804</id>
-    <nome>Joao</nome>
-    <dataNascimento>2000-05-10</dataNascimento>
-    <email>joao@email.com</email>
-    <telefone>123456789</telefone>
-    <matricula>MAT123</matricula>
-    <turno>MANHA</turno>
-    <nivel>BASICO</nivel>
-    <dataMatricula>2023-01-15</dataMatricula>
-    <mensalidade>
-      <valor>1100.0</valor>
-      <dataVencimento>2023-02-01</dataVencimento>
-      <pago>true</pago>
-      <formaPagamentoStrategy class="br.edu.ifpb.ads.pagamento.DinheiroPagamento"/>
-    </mensalidade>
-    <ativo>true</ativo>
-  </aluno>
-  <aluno>
-    <id>1697736847985</id>
-    <nome>Aluska Monteiro</nome>
-    <dataNascimento>2000-12-15</dataNascimento>
-    <email>aluska.monteiro@gmail.com</email>
-    <telefone>83996586204</telefone>
-    <matricula>19102023</matricula>
-    <turno>TARDE</turno>
-    <nivel>BASICO</nivel>
-    <dataMatricula>2023-10-19</dataMatricula>
-    <mensalidade>
-      <valor>800.0</valor>
-      <dataVencimento>2023-11-19</dataVencimento>
-      <pago>true</pago>
-      <formaPagamentoStrategy class="br.edu.ifpb.ads.pagamento.PixPagamento"/>
-    </mensalidade>
-    <ativo>true</ativo>
-  </aluno>
-  <aluno>
-    <id>1697737167105</id>
-    <nome>Henry Monteiro</nome>
-    <dataNascimento>2021-12-12</dataNascimento>
-    <email>henry.monteiro@gmail.com</email>
-    <telefone>839995865208</telefone>
-    <matricula>202351524</matricula>
-    <turno>MANHA</turno>
-    <nivel>BASICO</nivel>
-    <dataMatricula>2023-10-19</dataMatricula>
-    <mensalidade>
-      <valor>760.0</valor>
-      <dataVencimento>2023-11-19</dataVencimento>
-      <pago>true</pago>
-      <formaPagamentoStrategy class="br.edu.ifpb.ads.pagamento.DinheiroPagamento"/>
+      <valor>200.0</valor>
+      <dataVencimento>2023-11-24</dataVencimento>
+      <pago>false</pago>
     </mensalidade>
     <ativo>true</ativo>
   </aluno>

@@ -19,6 +19,20 @@ public class Aluno extends Pessoa {
     public Aluno() {
     }
 
+    public Aluno(String nome, LocalDate dataNascimento, String email, String telefone, String matricula, Turno turno, Nivel nivel, LocalDate dataMatricula, double valorMensalidade, LocalDate dataVencimento) {
+        super(nome, dataNascimento);
+        this.email = email;
+        this.telefone = telefone;
+        this.matricula = matricula;
+        this.turno = turno;
+        this.nivel = nivel;
+        this.dataMatricula = dataMatricula;
+        this.ativo = true;
+        this.mensalidade = new Mensalidade(valorMensalidade, dataVencimento);
+    }
+
+
+
     public Aluno(String nome, LocalDate dataNascimento, String email, String telefone, String matricula, Turno turno, Nivel nivel, LocalDate dataMatricula, double valorMensalidade, LocalDate dataVencimento, FormaPagamentoStrategy formaPagamentoStrategy) {
         super(nome, dataNascimento);
         this.email = email;

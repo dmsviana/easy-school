@@ -1,4 +1,4 @@
-package br.edu.ifpb.ads.pagamento;
+package br.edu.ifpb.ads.payments;
 
 public class DinheiroPagamento implements FormaPagamentoStrategy {
 
