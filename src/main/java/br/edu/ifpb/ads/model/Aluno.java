@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import br.edu.ifpb.ads.model.enums.Nivel;
 import br.edu.ifpb.ads.model.enums.Turno;
-import br.edu.ifpb.ads.pagamento.FormaPagamentoStrategy;
+import br.edu.ifpb.ads.payments.FormaPagamentoStrategy;
 
 public class Aluno extends Pessoa {
     private String email;

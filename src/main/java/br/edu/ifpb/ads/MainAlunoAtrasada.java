@@ -6,8 +6,8 @@ import br.edu.ifpb.ads.controller.AlunoController;
 import br.edu.ifpb.ads.model.Aluno;
 import br.edu.ifpb.ads.model.enums.Nivel;
 import br.edu.ifpb.ads.model.enums.Turno;
-import br.edu.ifpb.ads.pagamento.DinheiroPagamento;
-import br.edu.ifpb.ads.pagamento.FormaPagamentoStrategy;
+import br.edu.ifpb.ads.payments.DinheiroPagamento;
+import br.edu.ifpb.ads.payments.FormaPagamentoStrategy;
 
 public class MainAlunoAtrasada {
 

@@ -2,7 +2,7 @@ package br.edu.ifpb.ads.model;
 
 import java.time.LocalDate;
 
-import br.edu.ifpb.ads.pagamento.FormaPagamentoStrategy;
+import br.edu.ifpb.ads.payments.FormaPagamentoStrategy;
 
 public class Mensalidade {
 

@@ -7,11 +7,8 @@ import br.edu.ifpb.ads.controller.AlunoController;
 import br.edu.ifpb.ads.model.Aluno;
 import br.edu.ifpb.ads.model.enums.Nivel;
 import br.edu.ifpb.ads.model.enums.Turno;
-import br.edu.ifpb.ads.pagamento.CartaoPagamento;
-import br.edu.ifpb.ads.pagamento.DinheiroPagamento;
-import br.edu.ifpb.ads.pagamento.FormaPagamentoStrategy;
-import br.edu.ifpb.ads.pagamento.PixPagamento;
-import br.edu.ifpb.ads.pagamento.TipoPagamento;
+import br.edu.ifpb.ads.payments.FormaPagamentoStrategy;
+import br.edu.ifpb.ads.payments.TipoPagamento;
 
 public class MainAluno {
 
