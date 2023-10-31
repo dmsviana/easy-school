@@ -2,6 +2,8 @@ package br.edu.ifpb.ads.views.components;
 
 import javax.swing.JFrame;
 
+import br.edu.ifpb.ads.utils.Imagens;
+
 public abstract class JanelaPadrao extends JFrame {
     
 
@@ -11,7 +13,7 @@ public abstract class JanelaPadrao extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(null);
-        //setIconImage(Imagens.ICONE_SISTEMA.getImage());
+        setIconImage(Imagens.SISTEMA.getImage());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

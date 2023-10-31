@@ -39,6 +39,7 @@ public class AlunoGUI extends JanelaPadrao {
         super("Easy School - Alunos");
         alunoController = new AlunoController();
         setSize(1200, 700);
+        setLocationRelativeTo(null);
         adicionarCheckBox();
         adicionarImagens();
         adicionarButtons();
@@ -152,8 +153,8 @@ public class AlunoGUI extends JanelaPadrao {
                         linha[2] = aluno.getDataNascimento();
                         linha[3] = aluno.getTelefone();
                         linha[4] = aluno.getMatricula();
-                        linha[5] = aluno.getNivel();
-                        linha[6] = aluno.getTurno();
+                        linha[5] = aluno.getNivel().getNivel();
+                        linha[6] = aluno.getTurno().getTurno();
                         modeloTabela.addRow(linha);
                     }
                 }

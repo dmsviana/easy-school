@@ -4,6 +4,8 @@ import javax.swing.ImageIcon;
 
 public class Imagens {
 
+    public static ImageIcon SISTEMA = new ImageIcon(Imagens.class.getResource("/imagens/escola_32.png"));
+
     public static ImageIcon LOGIN_FLAT = new ImageIcon(Imagens.class.getResource("/imagens/login_368x368.png"));
     public static ImageIcon INICIO_FLAT = new ImageIcon(Imagens.class.getResource("/imagens/home_368x368.png"));
     public static ImageIcon ALUNO_FLAT = new ImageIcon(Imagens.class.getResource("/imagens/aluno_368px.png"));

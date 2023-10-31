@@ -13,6 +13,7 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 import br.edu.ifpb.ads.factory.aluno.AlunoFactoryGUI;
+import br.edu.ifpb.ads.factory.mensalidade.MensalidadeFactoryGUI;
 import br.edu.ifpb.ads.utils.Imagens;
 import br.edu.ifpb.ads.views.components.JButtonPadrao;
 import br.edu.ifpb.ads.views.components.JLabelTitulo;
@@ -33,7 +34,7 @@ public class InicioGUI extends JanelaPadrao {
 
     private void adicionarLabels() {
         //TODO adicionar nome do usuário logado -> buscar na base de dados
-        JLabel lblTitulo = new JLabelTitulo("Olá, bem-vindo de volta!", 510, 5, 300, 50);
+        JLabel lblTitulo = new JLabelTitulo("Seja bem-vindo", 510, 5, 350, 90);
         add(lblTitulo);
 
     }
@@ -52,25 +53,12 @@ public class InicioGUI extends JanelaPadrao {
         JButton btnProfessores = new JButtonPadrao("Professores", 510, 155, 300, 50);
         add(btnProfessores);
 
-        JButton btnTurmas = new JButtonPadrao("Turmas", 510, 215, 300, 50);
-        add(btnTurmas);
+        JButton btnMensalidade = new JButtonPadrao("Mensalidades", 510, 215, 300, 50);
+        btnMensalidade.addActionListener(new OuvinteBotoesTelaInicial(new MensalidadeFactoryGUI(), this));
+        add(btnMensalidade);
 
-        JButton btnFinanceiro = new JButtonPadrao("Financeiro", 510, 275, 300, 50);
-
-
-        btnFinanceiro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    //Mensageiro.send();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-
-        add(btnFinanceiro);
+        JButton btnRelatorios = new JButtonPadrao("Relatórios", 510, 275, 300, 50);
+        add(btnRelatorios);
     }
 
     private void adicionarSeparador(){
