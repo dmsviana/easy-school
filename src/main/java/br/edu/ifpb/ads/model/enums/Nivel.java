@@ -12,7 +12,7 @@ public enum Nivel {
         this.nivel = nivel;
     }
 
-    public String getNivel() {
+    public String getDescricao() {
         return nivel;
     }
 

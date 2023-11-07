@@ -12,7 +12,7 @@ public enum Turno {
 
     private String turno;
 
-    public String getTurno() {
+    public String getDescricao() {
         return turno;
     }
 

@@ -7,10 +7,12 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-import br.edu.ifpb.ads.views.ouvintes.OuvinteBotoesTelaInicial;
-
 public class JButtonPadrao extends JButton implements MouseListener{
 
+
+    public JButtonPadrao(String texto){
+        setText(texto);
+    }
 
     public JButtonPadrao(String texto, int posX, int posY, int largura, int altura){
         setText(texto);

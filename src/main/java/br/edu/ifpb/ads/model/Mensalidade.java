@@ -8,31 +8,35 @@ public class Mensalidade {
 
     private double valor;
     private LocalDate dataVencimento;
-    private boolean pago;
+    private boolean paga;
     private FormaPagamentoStrategy formaPagamentoStrategy;
 
 
-    public Mensalidade(){
-        this.pago = false;
-
+    public Mensalidade() {
+        this.paga = false;
     }
 
-    public Mensalidade(double valor, LocalDate dataVencimento){
+    public Mensalidade(double valor) {
         this.valor = valor;
-        this.dataVencimento = dataVencimento;
-        this.pago = false;
+        this.paga = false;
+    }
+    
+    public Mensalidade(double valor, LocalDate dataVencimento) {
+    	this.valor = valor;
+    	this.dataVencimento = dataVencimento;
+    	this.paga = false;
     }
 
     public Mensalidade(double valor, LocalDate dataVencimento, FormaPagamentoStrategy formaPagamentoStrategy) {
         this.valor = valor;
         this.dataVencimento = dataVencimento;
-        this.pago = false;
+        this.paga = false;
         this.formaPagamentoStrategy = formaPagamentoStrategy;
     }
 
     public boolean isMensalidadeAtrasada(){
         LocalDate dataAtual = LocalDate.now();
-        return dataAtual.isAfter(dataVencimento) && !pago;
+        return dataAtual.isAfter(dataVencimento) && !paga;
     }
 
     public int calcularDiasAtraso(){
@@ -42,7 +46,7 @@ public class Mensalidade {
 
 
     public void calcularPagamento(){
-        if (!pago){
+        if (!paga){
             double valorFinal = formaPagamentoStrategy.calcularValorPagamento(valor);
 
             if (isMensalidadeAtrasada()){
@@ -56,7 +60,7 @@ public class Mensalidade {
     }
 
     public void efetuarPagamento(double valorFinal){
-        this.pago = true;
+        this.paga = true;
         this.valor = valorFinal;
     }
 
@@ -77,11 +81,11 @@ public class Mensalidade {
     }
 
     public boolean isPago() {
-        return pago;
+        return paga;
     }
 
-    public void setPago(boolean pago) {
-        this.pago = pago;
+    public void setPago(boolean paga) {
+        this.paga = paga;
     }
 
     public FormaPagamentoStrategy getFormaPagamentoStrategy() {

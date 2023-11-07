@@ -13,13 +13,14 @@ public class Aluno extends Pessoa {
     private Turno turno;
     private Nivel nivel;
     private LocalDate dataMatricula;
-    private Mensalidade mensalidade;
+    private Mensalidade[] mensalidades;
     private boolean ativo;
 
     public Aluno() {
+    	
     }
 
-    public Aluno(String nome, LocalDate dataNascimento, String email, String telefone, String matricula, Turno turno, Nivel nivel, LocalDate dataMatricula, double valorMensalidade, LocalDate dataVencimento) {
+    public Aluno(String nome, LocalDate dataNascimento, String email, String telefone, String matricula, Turno turno, Nivel nivel, LocalDate dataMatricula, double valorMensalidade) {
         super(nome, dataNascimento);
         this.email = email;
         this.telefone = telefone;
@@ -28,12 +29,13 @@ public class Aluno extends Pessoa {
         this.nivel = nivel;
         this.dataMatricula = dataMatricula;
         this.ativo = true;
-        this.mensalidade = new Mensalidade(valorMensalidade, dataVencimento);
+        this.mensalidades = new Mensalidade[5];
+        for (int i = 0; i < 5; i++) {
+            this.mensalidades[i] = new Mensalidade(valorMensalidade);
+        }
     }
 
-
-
-    public Aluno(String nome, LocalDate dataNascimento, String email, String telefone, String matricula, Turno turno, Nivel nivel, LocalDate dataMatricula, double valorMensalidade, LocalDate dataVencimento, FormaPagamentoStrategy formaPagamentoStrategy) {
+    public Aluno(String nome, LocalDate dataNascimento, String email, String telefone, String matricula, Turno turno, Nivel nivel, LocalDate dataMatricula, double valorMensalidade, FormaPagamentoStrategy formaPagamentoStrategy) {
         super(nome, dataNascimento);
         this.email = email;
         this.telefone = telefone;
@@ -42,11 +44,25 @@ public class Aluno extends Pessoa {
         this.nivel = nivel;
         this.dataMatricula = dataMatricula;
         this.ativo = true;
-        this.mensalidade = new Mensalidade(valorMensalidade, dataVencimento, formaPagamentoStrategy);
+        this.mensalidades = new Mensalidade[5];
+
+        // Define as datas de vencimento das mensalidades com base na data de matrícula
+        for (int i = 0; i < 5; i++) {
+            LocalDate dataVencimento = dataMatricula.plusMonths(i).plusDays(7); // Adiciona 7 dias a cada mensalidade
+            this.mensalidades[i] = new Mensalidade(valorMensalidade, dataVencimento, formaPagamentoStrategy);
+        }
     }
 
     public void realizarPagamento() {
-        mensalidade.calcularPagamento();
+        for (Mensalidade mensalidade : mensalidades) {
+            if (!mensalidade.isPago()) {
+                mensalidade.calcularPagamento();
+            }
+        }
+    }
+    
+    public void definirMensalidades(Mensalidade[] mensalidades) {
+    	this.mensalidades = mensalidades;
     }
 
     public void setAtivo(boolean ativo) {
@@ -105,25 +121,13 @@ public class Aluno extends Pessoa {
         this.dataMatricula = dataMatricula;
     }
 
-    public Mensalidade getMensalidade() {
-        return mensalidade;
-    }
-
-    public void setMensalidade(Mensalidade mensalidade) {
-        this.mensalidade = mensalidade;
+    public Mensalidade[] getMensalidades() {
+        return mensalidades;
     }
 
     @Override
     public String toString() {
         return "Aluno [email=" + email + ", telefone=" + telefone + ", matricula=" + matricula + ", turno=" + turno
-                + ", nivel=" + nivel + ", dataMatricula=" + dataMatricula + ", mensalidade=" + mensalidade + ", ativo="
-                + ativo + "]";
+                + ", nivel=" + nivel + ", dataMatricula=" + dataMatricula + ", ativo=" + ativo + "]";
     }
-
-
-    
-
-    
-
 }
-

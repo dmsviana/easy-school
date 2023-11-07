@@ -1,5 +1,6 @@
 package br.edu.ifpb.ads.views.mensalidade;
 
+import br.edu.ifpb.ads.utils.Imagens;
 import br.edu.ifpb.ads.views.components.JButtonVoltar;
 import br.edu.ifpb.ads.views.components.JanelaPadrao;
 
@@ -73,6 +74,11 @@ public class MensalidadeGUI extends JanelaPadrao {
         titulo.setFont(new Font("Roboto", Font.BOLD, 36));
         titulo.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(titulo, BorderLayout.NORTH);
+
+
+        JLabel lblPagamentoImagem = new JLabel(Imagens.PAGAMENTO);
+        contentPane.add(lblPagamentoImagem, BorderLayout.WEST);
+
     }
 
 }
